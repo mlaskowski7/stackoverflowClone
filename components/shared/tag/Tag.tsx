@@ -4,7 +4,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 
 interface TagProps {
-  id: number;
+  id: string;
   name: string;
   questionsNumber?: number;
   showCount?: boolean;

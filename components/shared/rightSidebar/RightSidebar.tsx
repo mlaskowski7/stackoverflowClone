@@ -6,50 +6,50 @@ import Tag from "../tag/Tag";
 const RightSidebar = () => {
   const topQuestions = [
     {
-      id: 1,
+      id: "1",
       title: "How do I use express as a custom server in NextJS?",
     },
     {
-      id: 2,
+      id: "2",
       title: "Is it only me or the font is bolder than necessary?",
     },
     {
-      id: 3,
+      id: "3",
       title: "Can I get the course for free?",
     },
     {
-      id: 4,
+      id: "4",
       title: "Redux Toolkit Not Updating State as Expected",
     },
     {
-      id: 5,
+      id: "5",
       title: "Async/Await Function Not Handling Errors Properly",
     },
   ];
 
   const hotTags = [
     {
-      id: 1,
+      id: "1",
       name: "javascript",
       questionsNumber: 5,
     },
     {
-      id: 2,
+      id: "2",
       name: "react",
       questionsNumber: 4,
     },
     {
-      id: 3,
+      id: "3",
       name: "java",
       questionsNumber: 3,
     },
     {
-      id: 4,
+      id: "4",
       name: ".NET",
       questionsNumber: 2,
     },
     {
-      id: 5,
+      id: "5",
       name: "machine-learning",
       questionsNumber: 1,
     },
