@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "DevOverflow",
+  title: "StackOverflow Clone",
   description:
     "Explore mine Next.js project, a simplified clone of Stack Overflow designed for fast, interactive learning and knowledge sharing. Built with Next.js and Tailwind CSS, it features a user-friendly Q&A platform for developers to ask questions, share solutions, and enhance their coding skills. Dive into a community-driven environment that mirrors the best of Stack Overflow's collaborative spirit.",
   icons: {
