@@ -23,6 +23,19 @@ export async function getUserById(userId: string) {
   }
 }
 
+export async function getAllUsers() {
+  try {
+    connectToDatabase();
+
+    const users = await User.find({});
+
+    return users;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 export async function createUser(userData: CreateUserParams) {
   try {
     connectToDatabase();
