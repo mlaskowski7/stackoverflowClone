@@ -2,8 +2,10 @@ import LocalSearch from "@/components/shared/search/LocalSearch";
 import Filter from "@/components/shared/filter/Filter";
 import React from "react";
 import { UserFilters } from "@/constants/filters";
+import { getAllUsers } from "@/lib/actions/user.action";
 
-const page = () => {
+const Page = async () => {
+  const result = await getAllUsers({});
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">Users</h1>
@@ -22,9 +24,15 @@ const page = () => {
         />
       </div>
 
-      <section className="mt-12 flex flex-wrap gap-4"></section>
+      <section className="mt-12 flex flex-wrap gap-4">
+        {result.users.length > 0 ? (
+          result.users.map((u) => <div key={u.name}>{u.name}</div>)
+        ) : (
+          <div>No users here</div>
+        )}
+      </section>
     </>
   );
 };
 
-export default page;
+export default Page;
