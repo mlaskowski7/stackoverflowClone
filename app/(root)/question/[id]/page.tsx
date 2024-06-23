@@ -1,5 +1,7 @@
+import AnswerForm from "@/components/forms/AnswerForm";
 import ParseHTML from "@/components/shared/parseHTML/ParseHTML";
 import Stat from "@/components/shared/stat/Stat";
+import Tag from "@/components/shared/tag/Tag";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getTimestamp, formatBigNumber } from "@/lib/utils";
 import Image from "next/image";
@@ -69,6 +71,14 @@ const Page = async ({ params }) => {
       </div>
 
       <ParseHTML data={result.content} />
+
+      <div className="mt-8 flex flex-wrap gap-2">
+        {result.tags.map((tag) => (
+          <Tag key={tag._id} id={tag._id} name={tag.name} showCount={false} />
+        ))}
+      </div>
+
+      <AnswerForm />
     </>
   );
 };
