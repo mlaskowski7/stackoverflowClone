@@ -22,6 +22,7 @@ import Image from "next/image";
 import { z } from "zod";
 import { createQuestion } from "@/lib/actions/question.action";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
 const type: any = "create";
 
@@ -34,6 +35,7 @@ const QuestionForm = ({ mongoUserId }: questionFormProps) => {
   const editorRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { mode } = useTheme();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof QuestionFormSchema>>({
@@ -172,6 +174,8 @@ const QuestionForm = ({ mongoUserId }: questionFormProps) => {
                       "alignright alignjustify | bullist numlist outdent indent | " +
                       "help",
                     content_style: "body { font-family:Inter; font-size:16px }",
+                    skin: mode === "dark" ? "oxide-dark" : "oxide",
+                    content_css: mode === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>
