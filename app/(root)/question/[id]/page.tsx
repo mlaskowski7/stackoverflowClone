@@ -3,13 +3,22 @@ import ParseHTML from "@/components/shared/parseHTML/ParseHTML";
 import Stat from "@/components/shared/stat/Stat";
 import Tag from "@/components/shared/tag/Tag";
 import { getQuestionById } from "@/lib/actions/question.action";
+import { getUserById } from "@/lib/actions/user.action";
 import { getTimestamp, formatBigNumber } from "@/lib/utils";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Page = async ({ params }) => {
   const result = await getQuestionById({ questionId: params.id });
+  const { userId: clerkId } = auth();
+
+  let mongoUser;
+
+  if (clerkId) {
+    mongoUser = await getUserById(clerkId);
+  }
 
   return (
     <>
@@ -78,7 +87,11 @@ const Page = async ({ params }) => {
         ))}
       </div>
 
-      <AnswerForm />
+      <AnswerForm
+        question={result.content}
+        questionId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser._id)}
+      />
     </>
   );
 };
