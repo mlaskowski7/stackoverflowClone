@@ -1,7 +1,9 @@
 import AnswerForm from "@/components/forms/AnswerForm";
+import AllAnswers from "@/components/shared/allAnswers/AllAnswers";
 import ParseHTML from "@/components/shared/parseHTML/ParseHTML";
 import Stat from "@/components/shared/stat/Stat";
 import Tag from "@/components/shared/tag/Tag";
+import Votes from "@/components/shared/votes/votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { getTimestamp, formatBigNumber } from "@/lib/utils";
@@ -10,8 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Page = async ({ params }) => {
-  const result = await getQuestionById({ questionId: params.id });
+const Page = async ({ params }: any) => {
   const { userId: clerkId } = auth();
 
   let mongoUser;
@@ -19,6 +20,8 @@ const Page = async ({ params }) => {
   if (clerkId) {
     mongoUser = await getUserById(clerkId);
   }
+
+  const result = await getQuestionById({ questionId: params.id });
 
   return (
     <>
@@ -40,7 +43,18 @@ const Page = async ({ params }) => {
             </p>
           </Link>
 
-          <div className="flex justify-end">voting will be here</div>
+          <div className="flex justify-end">
+            <Votes
+              type="Question"
+              itemId={JSON.stringify(result._id)}
+              userId={JSON.stringify(mongoUser._id)}
+              upvotes={result.upvotes.length}
+              hasUpvoted={result.upvotes.includes(mongoUser._id)}
+              downvotes={result.downvotes.length}
+              hasDownvoted={result.downvotes.includes(mongoUser._id)}
+              hasSaved={mongoUser?.saved.includes(result._id)}
+            />
+          </div>
         </div>
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">
           {result.title}
@@ -82,15 +96,21 @@ const Page = async ({ params }) => {
       <ParseHTML data={result.content} />
 
       <div className="mt-8 flex flex-wrap gap-2">
-        {result.tags.map((tag) => (
+        {result.tags.map((tag: any) => (
           <Tag key={tag._id} id={tag._id} name={tag.name} showCount={false} />
         ))}
       </div>
 
+      <AllAnswers
+        questionId={result._id}
+        userId={mongoUser?._id}
+        totalAnswers={result.answers.length}
+      />
+
       <AnswerForm
         question={result.content}
         questionId={JSON.stringify(result._id)}
-        authorId={JSON.stringify(mongoUser._id)}
+        authorId={JSON.stringify(mongoUser?._id)}
       />
     </>
   );
