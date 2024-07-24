@@ -9,7 +9,6 @@ import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { formatBigNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { type } from "os";
 import React from "react";
 
 interface Props {

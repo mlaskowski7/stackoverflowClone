@@ -5,7 +5,6 @@ import LocalSearch from "@/components/shared/search/LocalSearch";
 import { QuestionFilters } from "@/constants/filters";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
-import { use } from "react";
 
 export default async function Home() {
   const { userId } = auth();
