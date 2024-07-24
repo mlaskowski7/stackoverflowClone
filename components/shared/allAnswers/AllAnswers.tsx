@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTimestamp } from "@/lib/utils";
 import ParseHTML from "../parseHTML/ParseHTML";
-import Votes from "../votes/votes";
+import Votes from "../votes/Votes";
 
 interface Props {
   questionId: string;

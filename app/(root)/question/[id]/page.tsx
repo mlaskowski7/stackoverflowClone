@@ -3,7 +3,7 @@ import AllAnswers from "@/components/shared/allAnswers/AllAnswers";
 import ParseHTML from "@/components/shared/parseHTML/ParseHTML";
 import Stat from "@/components/shared/stat/Stat";
 import Tag from "@/components/shared/tag/Tag";
-import Votes from "@/components/shared/votes/votes";
+import Votes from "@/components/shared/votes/Votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { getTimestamp, formatBigNumber } from "@/lib/utils";
